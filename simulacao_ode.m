@@ -1,16 +1,27 @@
 tspan = 0:0.01:10;
-y_0 = [5 0 0 0];
+y_0 = [0 0.01 0 0];
 [t1,y1] = ode45(@f1, tspan, y_0); %linearizado ode45
 [t2,y2] = ode23t(@f1, tspan, y_0); %linearizado ode23t
 
 figure(1)
-plot(t1,y1(:,1),"r")
+plot(t1,y1(:,1),"k")
 hold on 
 plot(t2,y2(:,1),"b")
 
 figure(2)
 plot(t1, abs(y1(:,1) - y2(:,1)), "b") %erro
 
+%Não linearizada
+[t3,y3] = ode45(@f2, tspan, y_0); %N linearizado ode45
+[t4,y4] = ode23t(@f2, tspan, y_0); %N linearizado ode23t
+
+figure(1)
+plot(t3,y3(:,1),"g")
+hold on 
+plot(t4,y4(:,1),"r")
+
+figure(3)
+plot(t3, abs(y4(:,1) - y3(:,1)), "b") %erro
 %Linearizado
 function dy1 = f1(t,y)
     w_p = 1;
