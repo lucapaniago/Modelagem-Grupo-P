@@ -1,27 +1,38 @@
 tspan = 0:0.01:10;
 y_0 = [0 0.01 0 0];
+%Linearizada
 [t1,y1] = ode45(@f1, tspan, y_0); %linearizado ode45
 [t2,y2] = ode23t(@f1, tspan, y_0); %linearizado ode23t
-
-figure(1)
-plot(t1,y1(:,1),"k")
-hold on 
-plot(t2,y2(:,1),"b")
-
-figure(2)
-plot(t1, abs(y1(:,1) - y2(:,1)), "b") %erro
-
 %Não linearizada
 [t3,y3] = ode45(@f2, tspan, y_0); %N linearizado ode45
 [t4,y4] = ode23t(@f2, tspan, y_0); %N linearizado ode23t
 
+%Equações linearizada e não linearizada para ode45
 figure(1)
-plot(t3,y3(:,1),"g")
+plot(t1,y1(:,1),"b")
 hold on 
-plot(t4,y4(:,1),"r")
+plot(t3,y3(:,1),"r")
+legend("Linearizada", "Não Linearizada")
+xlabel("tempo [s]")
+ylabel("theta_1 [rad]")
 
+%Equações linearizada e não linearizada para ode23t
+figure(2) 
+plot(t2,y2(:,1),"b")
+hold on
+plot(t4,y4(:,1),"r")
+legend("Linearizada", "Não Linearizada")
+xlabel("tempo [s]")
+ylabel("theta_1 [rad]")
+
+%Erro diferentes ODE's linearizada
 figure(3)
+plot(t1, abs(y1(:,1) - y2(:,1)), "b") %erro
+
+%Erro diferentes ODE's não linearizada
+figure(4)
 plot(t3, abs(y4(:,1) - y3(:,1)), "b") %erro
+
 %Linearizado
 function dy1 = f1(t,y)
     w_p = 1;
