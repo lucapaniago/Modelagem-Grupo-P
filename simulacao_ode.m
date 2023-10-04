@@ -78,7 +78,7 @@ xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
 title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação linearizada")
 
-%Equações linearizada para ode45 e ode23t
+%Equações não linearizada para ode45 e ode23t
 figure(6)
 plot(t6,y6(:,1),"b")
 hold on
@@ -110,7 +110,7 @@ xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
 title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação linearizada para o caso C1")
  
-%Equações linearizada para ode45 e ode23t no caso C1
+%Equações não linearizada para ode45 e ode23t no caso C1
 figure(8)
 plot(t10,y10(:,1),"b")
 hold on
@@ -132,7 +132,7 @@ title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª 
 %Não linearizada M2
 [t16,y16] = ode23t(@f2, tspan, y_02); %N linearizado ode23t
 
-%Equações linearizada para ode45 e ode23t no caso C1
+%Equações linearizada para ode45 e ode23t no caso C2
 figure(9)
 plot(t13,y13(:,1),"b")
 hold on
@@ -142,7 +142,7 @@ xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
 title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação linearizada para o caso C2")
  
-%Equações linearizada para ode45 e ode23t no caso C1
+%Equações não linearizada para ode45 e ode23t no caso C2
 figure(10)
 plot(t14,y14(:,1),"b")
 hold on
