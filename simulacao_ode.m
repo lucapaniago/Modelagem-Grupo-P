@@ -1,37 +1,87 @@
+%Item a) 
+%C1
+
 tspan = 0:0.01:10;
-y_0 = [1.5 0 0 0];
+y_01 = [0.05 0 0 0];
 %Linearizada
-[t1,y1] = ode45(@f1, tspan, y_0); %linearizado ode45
-[t2,y2] = ode23t(@f1, tspan, y_0); %linearizado ode23t
+[t1,y1] = ode45(@f1, tspan, y_01); %linearizado ode45
 %Não linearizada
-[t3,y3] = ode45(@f2, tspan, y_0); %N linearizado ode45
-[t4,y4] = ode23t(@f2, tspan, y_0); %N linearizado ode23t
+[t2,y2] = ode45(@f2, tspan, y_01); %N linearizado ode45
 
 %Equações linearizada e não linearizada para ode45
 figure(1)
 plot(t1,y1(:,1),"b")
-hold on 
-plot(t3,y3(:,1),"r")
+hold on
+plot(t2,y2(:,1),"r")
 legend("Linearizada", "Não Linearizada")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
+title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem")
 
-%Equações linearizada e não linearizada para ode23t
-figure(2) 
-plot(t2,y2(:,1),"b")
+%Erro das equações linearizadas e não linearizadas
+figure(2)
+plot(t1, abs(y1(:,1)-y2(:,1)))
+xlabel("tempo [s]")
+ylabel("|theta_1L -theta_1NL| [rad]")
+title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem")
+
+%Item a) 
+%C2
+
+y_02 = [2 0 0 0];
+%Linearizada
+[t3,y3] = ode45(@f1, tspan, y_02); %linearizado ode45
+%Não linearizada
+[t4,y4] = ode45(@f2, tspan, y_02); %N linearizado ode45
+
+%Equações linearizada e não linearizada para ode45
+figure(3)
+plot(t3,y3(:,1),"b")
 hold on
 plot(t4,y4(:,1),"r")
 legend("Linearizada", "Não Linearizada")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
+title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem")
 
-%Erro diferentes ODE's linearizada
-figure(3)
-plot(t1, abs(y1(:,1) - y2(:,1)), "b") %erro
-
-%Erro diferentes ODE's não linearizada
+%Erro das equações linearizadas e não linearizadas
 figure(4)
-plot(t3, abs(y4(:,1) - y3(:,1)), "b") %erro
+plot(t3, abs(y3(:,1)-y4(:,1)))
+xlabel("tempo [s]")
+ylabel("|theta_1L -theta_1NL| [rad]")
+title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem")
+
+%Item b)
+
+y_03 = [10 0 0 0];
+%Linearizada M1
+[t5,y5] = ode45(@f1, tspan, y_03); %linearizado ode45
+%Não linearizada M1
+[t6,y6] = ode45(@f2, tspan, y_03); %N linearizado ode45
+%Linearizada M2
+[t7,y7] = ode23t(@f1, tspan, y_03); %linearizado ode23t
+%Não linearizada M2
+[t8,y8] = ode23t(@f2, tspan, y_03); %N linearizado ode23t
+
+%Equações linearizada para ode45 e ode23t
+figure(5)
+plot(t5,y5(:,1),"b")
+hold on
+plot(t7,y7(:,1),"r")
+legend("Método de Runge Kutta de 4ª ", "Método dos Trapézios")
+xlabel("tempo [s]")
+ylabel("theta_1 [rad]")
+title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trpézios para a equação linearizada")
+
+%Equações linearizada para ode45 e ode23t
+figure(6)
+plot(t6,y6(:,1),"b")
+hold on
+plot(t8,y8(:,1),"r")
+legend("Método de Runge Kutta de 4ª ", "Método dos Trapézios")
+xlabel("tempo [s]")
+ylabel("theta_1 [rad]")
+title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trpézios para a equação não linearizada")
 
 %Linearizado
 function dy1 = f1(t,y)
