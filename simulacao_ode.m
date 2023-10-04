@@ -1,22 +1,25 @@
 tspan = 0:0.01:10;
-y_0 = [0 0 0 0];
-[t1,y1] = ode45(@f1, tspan, y_0);
-[t2,y2] = ode45(@f2, tspan, y_0);
+y_0 = [5 0 0 0];
+[t1,y1] = ode45(@f1, tspan, y_0); %linearizado ode45
+[t2,y2] = ode23t(@f1, tspan, y_0); %linearizado ode23t
 
-figure
-plot(t1,y1(:,1),"b")
+figure(1)
+plot(t1,y1(:,1),"r")
 hold on 
 plot(t2,y2(:,1),"b")
+
+figure(2)
+plot(t1, abs(y1(:,1) - y2(:,1)), "b") %erro
 
 %Linearizado
 function dy1 = f1(t,y)
     w_p = 1;
-    lamb = 9/5;
-    dy1_1 = y(3);
-    dy1_2 = y(4);
-    dy1_3 = (3*w_p^2*(lamb*(2*lamb+3)*y(2)-2*(2*lamb+1)*y(1)))/(3*lamb+4);
-    dy1_4 = (3*w_p^2*((4*lamb*(lamb+2)+3)*y(1)-2*(lamb+1)^3*y(2)))/(lamb*(3*lamb+4));
-    dy1 = [dy1_1;dy1_2;dy1_3;dy1_4];
+    lambda = 9/5;
+    dy_1 = y(3);
+    dy_2 = y(4);
+    dy_3 = (3*w_p^2*(lambda*(2*lambda+3)*y(2)-2*(2*lambda+1)*y(1)))/(3*lambda+4);
+    dy_4 = (3*w_p^2*((4*lambda*(lambda+2)+3)*y(1)-2*(lambda+1)^3*y(2)))/(lambda*(3*lambda+4));
+    dy1 = [dy_1;dy_2;dy_3;dy_4];
 end
 
 %Não Linearizado
