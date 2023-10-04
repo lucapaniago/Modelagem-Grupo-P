@@ -109,7 +109,7 @@ legend("Método de Runge Kutta de 4ª ", "Método dos Trapézios")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
 title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trpézios para a equação linearizada para o caso C1")
-
+ 
 %Equações linearizada para ode45 e ode23t no caso C1
 figure(8)
 plot(t10,y10(:,1),"b")
