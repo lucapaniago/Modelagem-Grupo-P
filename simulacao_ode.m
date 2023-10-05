@@ -17,14 +17,14 @@ plot(t2,y2(:,1),"r")
 legend("Linearizada", "Não Linearizada")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
-title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem")
+title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem - C1")
 
 %Erro das equações linearizadas e não linearizadas
 figure(2)
 plot(t1, abs(y1(:,1)-y2(:,1)))
 xlabel("tempo [s]")
 ylabel("|theta_1L -theta_1NL| [rad]")
-title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem")
+title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem - C1")
 
 %Item e)-------------------------------------------------------------------
 %Condição inicial C2
@@ -44,20 +44,20 @@ plot(t4,y4(:,1),"r")
 legend("Linearizada", "Não Linearizada")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
-title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem")
+title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem - C2")
 
 %Erro das equações linearizadas e não linearizadas
 figure(4)
 plot(t3, abs(y3(:,1)-y4(:,1)))
 xlabel("tempo [s]")
 ylabel("|theta_1L -theta_1NL| [rad]")
-title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem")
+title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem - C2")
 
 %Item f)-------------------------------------------------------------------
 %M1: Método de Runge Kutta de 4ª ordem
 %M2: Método dos Trapézios
 
-%Condições iniciais para o item b)
+%Condições iniciais para o item f)
 y_03 = [10 0 0 0];
 %Linearizada M1
 [t5,y5] = ode45(@f1, tspan, y_03); %linearizado ode45
@@ -68,12 +68,12 @@ y_03 = [10 0 0 0];
 %Não linearizada M2
 [t8,y8] = ode23t(@f2, tspan, y_03); %N linearizado ode23t
 
-%Equações linearizada para ode45 e ode23t
+%Equações linearizadas para ode45 e ode23t
 figure(5)
 plot(t5,y5(:,1),"b")
 hold on
 plot(t7,y7(:,1),"r")
-legend("Método de Runge Kutta de 4ª ", "Método dos Trapézios")
+legend("Método de Runge Kutta de 4ª Ordem Ordem", "Método dos Trapézios")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
 title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação linearizada")
@@ -83,7 +83,7 @@ figure(6)
 plot(t6,y6(:,1),"b")
 hold on
 plot(t8,y8(:,1),"r")
-legend("Método de Runge Kutta de 4ª ", "Método dos Trapézios")
+legend("Método de Runge Kutta de 4ª Ordem ", "Método dos Trapézios")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
 title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação não linearizada")
@@ -105,7 +105,7 @@ figure(7)
 plot(t9,y9(:,1),"b")
 hold on
 plot(t11,y11(:,1),"r")
-legend("Método de Runge Kutta de 4ª ", "Método dos Trapézios")
+legend("Método de Runge Kutta de 4ª Ordem ", "Método dos Trapézios")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
 title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação linearizada para o caso C1")
@@ -115,12 +115,12 @@ figure(8)
 plot(t10,y10(:,1),"b")
 hold on
 plot(t12,y12(:,1),"r")
-legend("Método de Runge Kutta de 4ª ", "Método dos Trapézios")
+legend("Método de Runge Kutta de 4ª Ordem ", "Método dos Trapézios")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
 title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação não linearizada para o caso C1")
 
-%Item g)-------------------------------------------------------------------
+%Item h)-------------------------------------------------------------------
 %Condição inicial C2
 
 %Linearizada M1
@@ -137,7 +137,7 @@ figure(9)
 plot(t13,y13(:,1),"b")
 hold on
 plot(t15,y15(:,1),"r")
-legend("Método de Runge Kutta de 4ª ", "Método dos Trapézios")
+legend("Método de Runge Kutta de 4ª Ordem ", "Método dos Trapézios")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
 title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação linearizada para o caso C2")
@@ -147,7 +147,7 @@ figure(10)
 plot(t14,y14(:,1),"b")
 hold on
 plot(t16,y16(:,1),"r")
-legend("Método de Runge Kutta de 4ª ", "Método dos Trapézios")
+legend("Método de Runge Kutta de 4ª Ordem", "Método dos Trapézios")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
 title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação não linearizada para o caso C2")
