@@ -157,11 +157,11 @@ title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª 
 %Espaço de estados linearizado
 function dy1 = f1(t,y)
     w_p = 1;
-    lambda = 9/5;
+    lamb = 9/5;
     dy1_1 = y(3);
     dy1_2 = y(4);
-    dy1_3 = (3*w_p^2*(lambda*(2*lambda+3)*y(2)-2*(2*lambda+1)*y(1)))/(3*lambda+4);
-    dy1_4 = (3*w_p^2*((4*lambda*(lambda+2)+3)*y(1)-2*(lambda+1)^3*y(2)))/(lambda*(3*lambda+4));
+    dy1_3 = (3*w_p^2*(y(1)*(2+4*lamb)-3*lamb*y(2)))/(3*lamb+4);
+    dy1_4 = (3*w_p^2*lamb*(y(1)*(3+6*lamb)-2*(1+3*lamb)*y(2)))/(3*lamb+4);
     dy1 = [dy1_1;dy1_2;dy1_3;dy1_4];
 end
 
