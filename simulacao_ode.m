@@ -1,4 +1,4 @@
-%Item e)-------------------------------------------------------------------
+%Item g)-------------------------------------------------------------------
 %Condição inicial C1
 
 tspan = 0:0.01:10;
@@ -8,6 +8,10 @@ y_01 = [0.1 0 0 0];
 [t1,y1] = ode45(@f1, tspan, y_01); %linearizado ode45
 %Não linearizada
 [t2,y2] = ode45(@f2, tspan, y_01); %N linearizado ode45
+%Linearizada
+[t3,y3] = ode23t(@f1, tspan, y_01); %linearizado ode23t
+%Não linearizada
+[t4,y4] = ode23t(@f2, tspan, y_01); %N linearizado ode23t
 
 %Equações linearizada e não linearizada para ode45
 figure(1)
@@ -17,140 +21,94 @@ plot(t2,y2(:,1),"r")
 legend("Linearizada", "Não Linearizada")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
-title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem - C1")
+title("Diferença de theta1 utilizando o Método de Runge-Kutta na condição C1")
 
-%Erro das equações linearizadas e não linearizadas
+%Equações linearizada e não linearizada para ode23t
 figure(2)
-plot(t1, abs(y1(:,1)-y2(:,1)))
-xlabel("tempo [s]")
-ylabel("|theta_1L -theta_1NL| [rad]")
-title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem - C1")
-
-%Item e)-------------------------------------------------------------------
-%Condição inicial C2
-
-%C2
-y_02 = [3 0 0 0];
-%Linearizada
-[t3,y3] = ode45(@f1, tspan, y_02); %linearizado ode45
-%Não linearizada
-[t4,y4] = ode45(@f2, tspan, y_02); %N linearizado ode45
-
-%Equações linearizada e não linearizada para ode45
-figure(3)
 plot(t3,y3(:,1),"b")
 hold on
 plot(t4,y4(:,1),"r")
 legend("Linearizada", "Não Linearizada")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
-title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem - C2")
+title("Diferença de theta1 utilizando o Método dos Trapézios na condição C1")
 
-%Erro das equações linearizadas e não linearizadas
-figure(4)
-plot(t3, abs(y3(:,1)-y4(:,1)))
+%Equações linearizada para ode45 e ode23
+figure(3)
+plot(t1,y1(:,1),"b")
+hold on
+plot(t3,y3(:,1),"r")
+legend("Método de Runge-Kutta", "Método dos Trapézios")
 xlabel("tempo [s]")
-ylabel("|theta_1L -theta_1NL| [rad]")
-title("Diferença das equações linearizadas e não linearizadas utilizando o Método de Runge Kutta de 4ª ordem - C2")
+ylabel("theta_1 [rad]")
+title("Diferença de theta1 linearizado utilizando diferentes métodos de integração na condição C1")
 
-%Item f)-------------------------------------------------------------------
-%M1: Método de Runge Kutta de 4ª ordem
-%M2: Método dos Trapézios
+%Equações não linearizada para ode45 e ode23
+figure(4)
+plot(t2,y2(:,1),"b")
+hold on
+plot(t4,y4(:,1),"r")
+legend("Método de Runge-Kutta", "Método dos Trapézios")
+xlabel("tempo [s]")
+ylabel("theta_1 [rad]")
+title("Diferença de theta1 não linearizado utilizando diferentes métodos de integração na condição C1")
 
-%Condições iniciais para o item f)
-y_03 = [10 0 0 0];
-%Linearizada M1
-[t5,y5] = ode45(@f1, tspan, y_03); %linearizado ode45
-%Não linearizada M1
-[t6,y6] = ode45(@f2, tspan, y_03); %N linearizado ode45
-%Linearizada M2
-[t7,y7] = ode23t(@f1, tspan, y_03); %linearizado ode23t
-%Não linearizada M2
-[t8,y8] = ode23t(@f2, tspan, y_03); %N linearizado ode23t
+%Item g)-------------------------------------------------------------------
+%Condição inicial C2
 
-%Equações linearizadas para ode45 e ode23t
+%C2
+y_02 = [3 0 0 0];
+%Linearizada
+[t5,y5] = ode45(@f1, tspan, y_02); %linearizado ode45
+%Não linearizada
+[t6,y6] = ode45(@f2, tspan, y_02); %N linearizado ode45
+%Linearizada
+[t7,y7] = ode23t(@f1, tspan, y_02); %linearizado ode23t
+%Não linearizada
+[t8,y8] = ode23t(@f2, tspan, y_02); %N linearizado ode23t
+
+%Equações linearizada e não linearizada para ode45
 figure(5)
 plot(t5,y5(:,1),"b")
 hold on
-plot(t7,y7(:,1),"r")
-legend("Método de Runge Kutta de 4ª Ordem Ordem", "Método dos Trapézios")
+plot(t6,y6(:,1),"r")
+legend("Linearizada", "Não Linearizada")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
-title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação linearizada")
+title("Diferença de theta1 utilizando o Método de Runge-Kutta na condição C2")
 
-%Equações não linearizada para ode45 e ode23t
+%Equações linearizada e não linearizada para ode23t
 figure(6)
+plot(t7,y7(:,1),"b")
+hold on
+plot(t8,y8(:,1),"r")
+legend("Linearizada", "Não Linearizada")
+xlabel("tempo [s]")
+ylabel("theta_1 [rad]")
+title("Diferença de theta1 utilizando o Método dos Trapézios na condição C2")
+
+%Equações linearizada para ode45 e ode23
+figure(7)
+plot(t5,y5(:,1),"b")
+hold on
+plot(t7,y7(:,1),"r")
+legend("Método de Runge-Kutta", "Método dos Trapézios")
+xlabel("tempo [s]")
+ylabel("theta_1 [rad]")
+title("Diferença de theta1 linearizado utilizando diferentes métodos de integração na condição C2")
+
+%Equações não linearizada para ode45 e ode23
+figure(8)
 plot(t6,y6(:,1),"b")
 hold on
 plot(t8,y8(:,1),"r")
-legend("Método de Runge Kutta de 4ª Ordem ", "Método dos Trapézios")
+legend("Método de Runge-Kutta", "Método dos Trapézios")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
-title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação não linearizada")
-
-%Item g)-------------------------------------------------------------------
-%Condição inicial C1
-
-%Linearizada M1
-[t9,y9] = ode45(@f1, tspan, y_01); %linearizado ode45
-%Não linearizada M1
-[t10,y10] = ode45(@f2, tspan, y_01); %N linearizado ode45
-%Linearizada M2
-[t11,y11] = ode23t(@f1, tspan, y_01); %linearizado ode23t
-%Não linearizada M2
-[t12,y12] = ode23t(@f2, tspan, y_01); %N linearizado ode23t
-
-%Equações linearizada para ode45 e ode23t no caso C1
-figure(7)
-plot(t9,y9(:,1),"b")
-hold on
-plot(t11,y11(:,1),"r")
-legend("Método de Runge Kutta de 4ª Ordem ", "Método dos Trapézios")
-xlabel("tempo [s]")
-ylabel("theta_1 [rad]")
-title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação linearizada para o caso C1")
- 
-%Equações não linearizada para ode45 e ode23t no caso C1
-figure(8)
-plot(t10,y10(:,1),"b")
-hold on
-plot(t12,y12(:,1),"r")
-legend("Método de Runge Kutta de 4ª Ordem ", "Método dos Trapézios")
-xlabel("tempo [s]")
-ylabel("theta_1 [rad]")
-title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação não linearizada para o caso C1")
+title("Diferença de theta1 não linearizado utilizando diferentes métodos de integração na condição C2")
 
 %Item h)-------------------------------------------------------------------
-%Condição inicial C2
 
-%Linearizada M1
-[t13,y13] = ode45(@f1, tspan, y_02); %linearizado ode45
-%Não linearizada M1
-[t14,y14] = ode45(@f2, tspan, y_02); %N linearizado ode45
-%Linearizada M2
-[t15,y15] = ode23t(@f1, tspan, y_02); %linearizado ode23t
-%Não linearizada M2
-[t16,y16] = ode23t(@f2, tspan, y_02); %N linearizado ode23t
-
-%Equações linearizada para ode45 e ode23t no caso C2
-figure(9)
-plot(t13,y13(:,1),"b")
-hold on
-plot(t15,y15(:,1),"r")
-legend("Método de Runge Kutta de 4ª Ordem ", "Método dos Trapézios")
-xlabel("tempo [s]")
-ylabel("theta_1 [rad]")
-title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação linearizada para o caso C2")
- 
-%Equações não linearizada para ode45 e ode23t no caso C2
-figure(10)
-plot(t14,y14(:,1),"b")
-hold on
-plot(t16,y16(:,1),"r")
-legend("Método de Runge Kutta de 4ª Ordem", "Método dos Trapézios")
-xlabel("tempo [s]")
-ylabel("theta_1 [rad]")
-title("Diferença dos valores de theta_1 para os Métodos de Runge Kutta de 4ª ordem e o Método dos Trapézios para a equação não linearizada para o caso C2")
 
 %Espaço de estados---------------------------------------------------------
 
