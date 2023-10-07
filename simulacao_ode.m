@@ -20,8 +20,8 @@ hold on
 plot(t2,y2(:,1),"r")
 legend("Linearizada", "Não Linearizada")
 xlabel("tempo [s]")
-ylabel("\\theta_1 [rad]")
-title("\\theta_1 utilizando o Método de Runge-Kutta na condição C1")
+ylabel("\theta_1 [rad]")
+title("\theta_1 utilizando o Método de Runge-Kutta na condição C1")
 
 %Equações linearizada e não linearizada para ode23t
 figure(2)
