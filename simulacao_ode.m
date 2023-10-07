@@ -21,7 +21,7 @@ plot(t2,y2(:,1),"r")
 legend("Linearizada", "Não Linearizada")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
-title("Diferença de theta1 utilizando o Método de Runge-Kutta na condição C1")
+title("Theta1 utilizando o Método de Runge-Kutta na condição C1")
 
 %Equações linearizada e não linearizada para ode23t
 figure(2)
@@ -31,7 +31,7 @@ plot(t4,y4(:,1),"r")
 legend("Linearizada", "Não Linearizada")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
-title("Diferença de theta1 utilizando o Método dos Trapézios na condição C1")
+title("Theta1 utilizando o Método dos Trapézios na condição C1")
 
 %Equações linearizada para ode45 e ode23
 figure(3)
@@ -41,7 +41,7 @@ plot(t3,y3(:,1),"r")
 legend("Método de Runge-Kutta", "Método dos Trapézios")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
-title("Diferença de theta1 linearizado utilizando diferentes métodos de integração na condição C1")
+title("Theta1 linearizado com diferentes métodos de integração na condição C1")
 
 %Equações não linearizada para ode45 e ode23
 figure(4)
@@ -51,7 +51,7 @@ plot(t4,y4(:,1),"r")
 legend("Método de Runge-Kutta", "Método dos Trapézios")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
-title("Diferença de theta1 não linearizado utilizando diferentes métodos de integração na condição C1")
+title("Theta1 não linearizado com diferentes métodos de integração na condição C1")
 
 %Item g)-------------------------------------------------------------------
 %Condição inicial C2
@@ -75,7 +75,7 @@ plot(t6,y6(:,1),"r")
 legend("Linearizada", "Não Linearizada")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
-title("Diferença de theta1 utilizando o Método de Runge-Kutta na condição C2")
+title("Theta1 utilizando o Método de Runge-Kutta na condição C2")
 
 %Equações linearizada e não linearizada para ode23t
 figure(6)
@@ -85,7 +85,7 @@ plot(t8,y8(:,1),"r")
 legend("Linearizada", "Não Linearizada")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
-title("Diferença de theta1 utilizando o Método dos Trapézios na condição C2")
+title("Theta1 utilizando o Método dos Trapézios na condição C2")
 
 %Equações linearizada para ode45 e ode23
 figure(7)
@@ -95,7 +95,7 @@ plot(t7,y7(:,1),"r")
 legend("Método de Runge-Kutta", "Método dos Trapézios")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
-title("Diferença de theta1 linearizado utilizando diferentes métodos de integração na condição C2")
+title("Theta1 linearizado com diferentes métodos de integração na condição C2")
 
 %Equações não linearizada para ode45 e ode23
 figure(8)
@@ -105,7 +105,7 @@ plot(t8,y8(:,1),"r")
 legend("Método de Runge-Kutta", "Método dos Trapézios")
 xlabel("tempo [s]")
 ylabel("theta_1 [rad]")
-title("Diferença de theta1 não linearizado utilizando diferentes métodos de integração na condição C2")
+title("Theta1 não linearizado com diferentes métodos de integração na condição C2")
 
 %Item h)-------------------------------------------------------------------
 
