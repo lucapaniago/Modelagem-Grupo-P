@@ -20,8 +20,8 @@ hold on
 plot(t2,y2(:,1),"r")
 legend("Linearizada", "Não Linearizada")
 xlabel("tempo [s]")
-ylabel("theta_1 [rad]")
-title("Theta1 utilizando o Método de Runge-Kutta na condição C1")
+ylabel("\\theta_1 [rad]")
+title("\\theta_1 utilizando o Método de Runge-Kutta na condição C1")
 
 %Equações linearizada e não linearizada para ode23t
 figure(2)
@@ -30,8 +30,8 @@ hold on
 plot(t4,y4(:,1),"r")
 legend("Linearizada", "Não Linearizada")
 xlabel("tempo [s]")
-ylabel("theta_1 [rad]")
-title("Theta1 utilizando o Método dos Trapézios na condição C1")
+ylabel("\theta_1 [rad]")
+title("\theta_1 utilizando o Método dos Trapézios na condição C1")
 
 %Equações linearizada para ode45 e ode23
 figure(3)
@@ -40,8 +40,8 @@ hold on
 plot(t3,y3(:,1),"r")
 legend("Método de Runge-Kutta", "Método dos Trapézios")
 xlabel("tempo [s]")
-ylabel("theta_1 [rad]")
-title("Theta1 linearizado com diferentes métodos de integração na condição C1")
+ylabel("\theta_1 [rad]")
+title("\theta_1 linearizado com diferentes métodos de integração na condição C1")
 
 %Equações não linearizada para ode45 e ode23
 figure(4)
@@ -50,32 +50,52 @@ hold on
 plot(t4,y4(:,1),"r")
 legend("Método de Runge-Kutta", "Método dos Trapézios")
 xlabel("tempo [s]")
-ylabel("theta_1 [rad]")
-title("Theta1 não linearizado com diferentes métodos de integração na condição C1")
+ylabel("\theta_1 [rad]")
+title("\theta_1 não linearizado com diferentes métodos de integração na condição C1")
 
 %Item h)-------------------------------------------------------------------
 %Condição inicial C2
 
 %C2
 y_02 = [3 0 0 0];
-%Linearizada
-[t5,y5] = ode45(@f1, tspan, y_02); %linearizado ode45
 %Não linearizada
-[t6,y6] = ode45(@f2, tspan, y_02); %N linearizado ode45
-%Linearizada
-[t7,y7] = ode23t(@f1, tspan, y_02); %linearizado ode23t
-%Não linearizada
-[t8,y8] = ode23t(@f2, tspan, y_02); %N linearizado ode23t
+[t5,y5] = ode45(@f2, tspan, y_02); %N linearizado ode45
+[t6,y6] = ode23t(@f2, tspan, y_02); %N linearizado ode23t
 
 %Cálculo da energia mecânica
 g = 9.8;
 l1 = g;
 l2 = 5*l1/9;
-m1 = mu*l1;
-m2 = mu*l2;
-%linearizado ode45
-T1 = (l1^2*(m1+3*m2)*y5(:,3)^2+3*cos(y5(:,1)-y5(:,2))*l1*l2*m2*y5(:,3)*y5(:,4)+l2^2*m2*y5(:,4)^2)/6;
-V1 = (-g*(cos(y5(:,2))*l2*m2+cos(y5(:,1))*l1*(m1+2*m2)))/2;
+%Não linearizado ode45
+T5 = [];
+V5 = [];
+for i = (1:length(y5(:,1)))
+    T = (l1^2*(l1+3*l2)*y5(i,3)^2+3*cos(y5(i,1)-y5(i,2))*l1*l2*l2*y5(i,3)*y5(i,4)+l2^2*l2*y5(i,4)^2)/6;
+    T5(i) = T;
+    V = (-g*(cos(y5(i,2))*l2*l2+cos(y5(i,1))*l1*(l1+2*l2)))/2;
+    V5(i) = V;
+end
+E5 = T5 + V5;
+%Não linearizado ode23t
+T6 = [];
+V6 = [];
+for i = (1:length(y6(:,1)))
+    T = (l1^2*(l1+3*l2)*y6(i,3)^2+3*cos(y6(i,1)-y6(i,2))*l1*l2*l2*y6(i,3)*y6(i,4)+l2^2*l2*y6(i,4)^2)/6;
+    T6(i) = T;
+    V = (-g*(cos(y6(i,2))*l2*l2+cos(y6(i,1))*l1*(l1+2*l2)))/2;
+    V6(i) = V;
+end
+E6 = T6 + V6;
+
+%Equações não linearizada para ode45 e ode23 no caso C2
+figure(5)
+plot(t5,E5,"b")
+hold on
+plot(t6,E6,"r")
+legend("Método de Runge-Kutta", "Método dos Trapézios")
+xlabel("tempo [s]")
+ylabel("Energia Mecânica por densidade linear(\mu) [J*m/kg]")
+title("Energia mecânica no modelo não linearizado na condição C2")
 
 %Espaço de estados---------------------------------------------------------
 
