@@ -66,7 +66,7 @@ y_02 = [3 0 0 0];
 g = 9.8;
 l1 = g;
 l2 = 5*l1/9;
-mu = 1;
+mu = 0.5;
 m1 = l1*mu;
 m2 = l2*mu;
 %Não linearizado ode45
