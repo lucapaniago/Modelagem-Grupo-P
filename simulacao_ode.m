@@ -1,9 +1,9 @@
 %Item g)-------------------------------------------------------------------
 %Condição inicial C1
 
-tspan = 0:0.01:10;
+tspan = 0:0.001:10;
 %C1
-y_01 = [0.4 0 0 0];
+y_01 = [0 0.2 0 0];
 %Linearizada
 [t1,y1] = ode45(@f1, tspan, y_01); %linearizado ode45
 %Não linearizada
@@ -57,39 +57,30 @@ title("\theta_1 não linearizado com diferentes métodos de integração na cond
 %Condição inicial C2
 
 %C2
-y_02 = [1 0 0 0];
+y_02 = [3 0 0 0];
 %Não linearizada
-[t5,y5] = ode45(@f1, tspan, y_02); %N linearizado ode45
-[t6,y6] = ode23t(@f1, tspan, y_02); %N linearizado ode23t
+ops = odeset('MaxStep', 1e-5);
+[t5,y5] = ode45(@f2,tsapan, y_02, ops); %N linearizado ode45
+[t6,y6] = ode23t(@f2, tspan y_02,ops); %N linearizado ode23t
 
 %Cálculo da energia mecânica
 g = 9.8;
 l1 = g;
 l2 = 5*l1/9;
-mu = 1;
+mu = 2;
 m1 = l1*mu;
 m2 = l2*mu;
 %Não linearizado ode45
-T5 = [];
-V5 = [];
-for i = (1:length(y5(:,1)))
-    T = (l1^2*(m1+3*m2)*y5(i,3)^2+3*cos(y5(i,1)-y5(i,2))*l1*l2*m2*y5(i,3)*y5(i,4)+l2^2*m2*y5(i,4)^2)/6;
-    T5(i) = T;
-    V = -0.5*g*(cos(y5(i,2))*l2*m2+cos(y5(i,1))*l1*(m1+2*m2));
-    V5(i) = V;
-    E5(i) = T + V;
-end
+T5 = (l1^2*(m1+3*m2).*y5(:,3).^2+3*cos(y5(:,1)-y5(:,2))*l1*l2*m2.*y5(:,3).*y5(:,4)+l2^2*m2.*y5(:,4).^2)/6;
+
+V5 = -0.5*g.*(cos(y5(:,2))*l2*m2+cos(y5(:,1)).*l1*(m1+2*m2));
+E5 = T5 + V5;
 
 %Não linearizado ode23t
-T6 = [];
-V6 = [];
-for i = (1:length(y6(:,1)))
-    T = (l1^2*(m1+3*m2)*y6(i,3)^2+3*cos(y6(i,1)-y6(i,2))*l1*l2*m2*y6(i,3)*y6(i,4)+l2^2*m2*y6(i,4)^2)/6;
-    T6(i) = T;
-    V = -0.5*g*(cos(y6(i,2))*l2*m2+cos(y6(i,1))*l1*(m1+2*m2));
-    V6(i) = V;
-    E6(i) = T+V;
-end
+T6 = (l1^2*(m1+3*m2).*y6(:,3).^2+3*cos(y6(:,1)-y6(:,2))*l1*l2*m2.*y6(:,3).*y6(:,4)+l2^2*m2.*y6(:,4).^2)/6;
+
+V6 = -0.5*g.*(cos(y6(:,2))*l2*m2+cos(y6(:,1)).*l1*(m1+2*m2));
+E6 = T6 + V6;
 
 
 %Equações não linearizada para ode45 e ode23 no caso C2
@@ -110,8 +101,8 @@ function dy1 = f1(t,y)
     lamb = 9/5;
     dy1_1 = y(3);
     dy1_2 = y(4);
-    dy1_3 = (-3*(w_p)^2*((2 + 4*lamb)*y(1) - 3*lamb*y(2)))/(4 + 3*lamb);
-    dy1_4 = (3*lamb*(w_p)^2*((3 + 6*lamb)*y(1) - 2*(1 + 3*lamb)*y(2)))/(4 + 3*lamb);
+    dy1_3 = (3*(w_p)^2*(-1*(4+ 2*lamb)*y(1) + 3*lamb*y(2)))/(3 + 4*lamb);
+    dy1_4 = (3*lamb*(w_p)^2*((6 + 3*lamb)*y(1) - 2*(3 + 1*lamb)*y(2)))/(3 + 4*lamb);
     dy1 = [dy1_1;dy1_2;dy1_3;dy1_4];
 end
 
@@ -121,8 +112,8 @@ function dy2 = f2(t,y)
     lamb = 9/5;
     dy2_1 = y(3);
     dy2_2 = y(4);
-    dy2_3 = (3*((4 + 5*lamb)*sin(y(1)) + 3*lamb*sin(y(1) - 2*y(2)))*(w_p*w_p))/(-8 - 15*lamb + 9*lamb*cos(2*(y(1) - y(2)))) + (9*lamb*sin(2*(y(1) - y(2)))*(y(3)*y(3)))/(-8 - 15*lamb + 9*lamb*cos(2*(y(1) - y(2)))) + (6*sin(y(1) - y(2))*(y(4)*y(4)))/(-4 - 12*lamb + 9*lamb*(cos(y(1) - y(2))*cos(y(1) - y(2))));
-    dy2_4 =  (3*lamb*(-3*(1 + 2*lamb)*sin(2*y(1) - y(2)) + (1 + 6*lamb)*sin(y(2)))*(w_p*w_p))/(-8 - 15*lamb + 9*lamb*cos(2*(y(1) - y(2)))) - (6*lamb*(1 + 3*lamb)*sin(y(1) - y(2))*(y(3)*y(3)))/(-4 - 12*lamb + 9*lamb*(cos(y(1) - y(2))*cos(y(1) - y(2)))) + (9*lamb*sin(2*(y(1) - y(2)))*(y(4)*y(4)))/(8 + 15*lamb - 9*lamb*cos(2*(y(1) - y(2))));
+    dy2_3 = (-3*((5 + 4*lamb)*sin(y(1)) + 3*sin(y(1) - 2*y(2)))*(w_p*w_p))/(15 + 8*lamb - 9*cos(2*(y(1) - y(2)))) + (9*sin(2*(y(1) - y(2)))*(y(3)*y(3)))/(-15 - 8*lamb + 9*cos(2*(y(1) - y(2)))) - (6*sin(y(1) - y(2))*(y(4)*y(4)))/(lamb*(4*(3 + lamb) - 9*(cos(y(1) - y(2))*cos(y(1) - y(2)))));
+    dy2_4 = (-3*lamb*(-3*(2 + lamb)*sin(2*y(1) - y(2)) + (6 + lamb)*sin(y(2)))*(w_p*w_p))/(15 + 8*lamb - 9*cos(2*(y(1) - y(2)))) + (6*lamb*(3 + lamb)*sin(y(1) - y(2))*(y(3)*y(3)))/(4*(3 + lamb) - 9*(cos(y(1) - y(2))*cos(y(1) - y(2)))) + (9*sin(2*(y(1) - y(2)))*(y(4)*y(4)))/(15 + 8*lamb - 9*cos(2*(y(1) - y(2))));
     dy2 = [dy2_1;dy2_2;dy2_3;dy2_4];
 end
 
