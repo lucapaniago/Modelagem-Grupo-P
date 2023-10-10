@@ -60,8 +60,8 @@ title("\theta_1 não linearizado com diferentes métodos de integração na cond
 y_02 = [3 0 0 0];
 %Não linearizada
 ops = odeset('MaxStep', 1e-5);
-[t5,y5] = ode45(@f2,tsapan, y_02, ops); %N linearizado ode45
-[t6,y6] = ode23t(@f2, tspan y_02,ops); %N linearizado ode23t
+[t5,y5] = ode45(@f2,tspan, y_02, ops); %N linearizado ode45
+[t6,y6] = ode23t(@f2, tspan, y_02,ops); %N linearizado ode23t
 
 %Cálculo da energia mecânica
 g = 9.8;
@@ -72,16 +72,13 @@ m1 = l1*mu;
 m2 = l2*mu;
 %Não linearizado ode45
 T5 = (l1^2*(m1+3*m2).*y5(:,3).^2+3*cos(y5(:,1)-y5(:,2))*l1*l2*m2.*y5(:,3).*y5(:,4)+l2^2*m2.*y5(:,4).^2)/6;
-
 V5 = -0.5*g.*(cos(y5(:,2))*l2*m2+cos(y5(:,1)).*l1*(m1+2*m2));
 E5 = T5 + V5;
 
 %Não linearizado ode23t
 T6 = (l1^2*(m1+3*m2).*y6(:,3).^2+3*cos(y6(:,1)-y6(:,2))*l1*l2*m2.*y6(:,3).*y6(:,4)+l2^2*m2.*y6(:,4).^2)/6;
-
 V6 = -0.5*g.*(cos(y6(:,2))*l2*m2+cos(y6(:,1)).*l1*(m1+2*m2));
 E6 = T6 + V6;
-
 
 %Equações não linearizada para ode45 e ode23 no caso C2
 figure(5)
