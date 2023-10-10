@@ -57,7 +57,7 @@ title("\theta_1 não linearizado com diferentes métodos de integração na cond
 %Condição inicial C2
 
 %C2
-y_02 = [3 0 0 0];
+y_02 = [0.5 0 0 0];
 %Não linearizada
 [t5,y5] = ode45(@f2, tspan, y_02); %N linearizado ode45
 [t6,y6] = ode23t(@f2, tspan, y_02); %N linearizado ode23t
@@ -75,7 +75,7 @@ V5 = [];
 for i = (1:length(y5(:,1)))
     T = (l1^2*(m1+3*m2)*y5(i,3)^2+3*cos(y5(i,1)-y5(i,2))*l1*l2*m2*y5(i,3)*y5(i,4)+l2^2*m2*y5(i,4)^2)/6;
     T5(i) = T;
-    V = (-g*(cos(y5(i,2))*l2*m2+cos(y5(i,1))*l1*(m1+2*m2)))/2;
+    V = (g*l2*m2*sin(y5(i,2)/2)^2)+(g*l1*(m1+2*m2)*sin(y5(i,1)/2)^2);
     V5(i) = V;
 end
 E5 = T5 + V5;
@@ -85,7 +85,7 @@ V6 = [];
 for i = (1:length(y6(:,1)))
     T = (l1^2*(m1+3*m2)*y6(i,3)^2+3*cos(y6(i,1)-y6(i,2))*l1*l2*m2*y6(i,3)*y6(i,4)+l2^2*m2*y6(i,4)^2)/6;
     T6(i) = T;
-    V = (-g*(cos(y6(i,2))*l2*m2+cos(y6(i,1))*l1*(m1+2*m2)))/2;
+    V = (g*l2*m2*sin(y6(i,2)/2)^2)+(g*l1*(m1+2*m2)*sin(y6(i,1)/2)^2);
     V6(i) = V;
 end
 E6 = T6 + V6;
@@ -97,7 +97,7 @@ hold on
 plot(t6,E6,"r")
 legend("Método de Runge-Kutta", "Método dos Trapézios")
 xlabel("tempo [s]")
-ylabel("Energia Mecânica por densidade linear(\mu) [J*m/kg]")
+ylabel("Energia Mecânica [J]")
 title("Energia mecânica no modelo não linearizado na condição C2")
 
 %Espaço de estados---------------------------------------------------------
@@ -108,8 +108,8 @@ function dy1 = f1(t,y)
     lamb = 9/5;
     dy1_1 = y(3);
     dy1_2 = y(4);
-    dy1_3 = (-3*(w_p)*w_p)*((2 + 4*lamb)*y(1) - 3*lamb*y(2))/(4 + 3*lamb);
-    dy1_4 = (3*lamb*(w_p)*w_p)*((3 + 6*lamb)*y(1) - 2*(1 + 3*lamb)*y(2))/(4 + 3*lamb);
+    dy1_3 = (-3*(w_p)^2*((2 + 4*lamb)*y(1) - 3*lamb*y(2)))/(4 + 3*lamb);
+    dy1_4 = (3*lamb*(w_p)^2*((3 + 6*lamb)*y(1) - 2*(1 + 3*lamb)*y(2)))/(4 + 3*lamb);
     dy1 = [dy1_1;dy1_2;dy1_3;dy1_4];
 end
 
