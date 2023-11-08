@@ -44,7 +44,7 @@ subplot(2,1,2);
 plot(t1,abs(y1(:,2)-y2(:,2)),"r")
 xlabel("tempo [s]")
 ylabel("|\theta_2_{lin} - \theta_2_{Ñlin}| [rad]")
-title("Diferença de \theta_2 entre modelo linearizado e não linearizado (C1)")
+title("Diferença de \theta_2 entre modelo linearizado e não linearizado para método de Range-Kutta (C1)")
 
 %Equações linearizada e não linearizada para ode23t
 figure(3)
@@ -70,7 +70,7 @@ subplot(2,1,1);
 plot(t1,abs(y3(:,1)-y4(:,1)),"r")
 xlabel("tempo [s]")
 ylabel("|\theta_1_{lin} - \theta_1_{Ñlin}| [rad]")
-title("Diferença de \theta_1 entre modelo linearizado e não linearizado (C1)")
+title("Diferença de \theta_1 entre modelo linearizado e não linearizado para Método dos Trapézios (C1)")
 
 subplot(2,1,2);
 plot(t1,abs(y3(:,2)-y4(:,2)),"r")
@@ -154,7 +154,7 @@ y_02 = [3 0 0 0];
 %Não linearizada
 ops = odeset('MaxStep', 1e-5);
 [t5,y5] = ode45(@f2,tspan, y_02, ops); %N linearizado ode45
-[t6,y6] = ode23t(@f2, tspan, y_02,ops); %N linearizado ode23t
+[t6,y6] = ode23t(@f2, tspan, y_02, ops); %N linearizado ode23t
 
 %Cálculo da energia mecânica
 g = 9.8;
