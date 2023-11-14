@@ -5,9 +5,9 @@ b = 17.03*10^(-6);
 Tau = [0; 0; 0];
 g = [0;0;-9.81];
 mc = 0.55;
-%q00 = [sqrt(2*(3-sqrt(3))/3)/2;-sqrt((3+sqrt(3))/3)/2;sqrt((3+sqrt(3))/3)/2;0 ];
-q00 = [0.99999;0;0;0];
-%q00 = [sqrt(2*(3+sqrt(3))/3)/2;sqrt((3-sqrt(3))/3)/2;-sqrt((3-sqrt(3))/3)/2;0]; %posição de equilíbrio instável
+%q00 = [sqrt(2*(3-sqrt(3))/3)/2;-sqrt((3+sqrt(3))/3)/2;sqrt((3+sqrt(3))/3)/2;0 ]; %posição de equilíbrio estável
+q00 = [sqrt(2*(3+sqrt(3))/3)/2;sqrt((3-sqrt(3))/3)/2;-sqrt((3-sqrt(3))/3)/2;0]; %posição de equilíbrio instável
+%q00 = [0.9999;0;0;0];
 
 w00 =[0;0;0];
 Ic = [0.00919625 -0.00309375 -0.00225;
