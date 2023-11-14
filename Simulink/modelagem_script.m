@@ -5,8 +5,10 @@ b = 17.03*10^(-6);
 Tau = [0; 0; 0];
 g = [0;0;-9.81];
 mc = 0.55;
-q00 = [sqrt(2*(3-sqrt(3))/3)/2;-sqrt((3+sqrt(3))/3)/2;sqrt((3+sqrt(3))/3)/2;0 ];
-%q00 = [1;0;0;0];
+%q00 = [sqrt(2*(3-sqrt(3))/3)/2;-sqrt((3+sqrt(3))/3)/2;sqrt((3+sqrt(3))/3)/2;0 ];
+q00 = [1;0;0;0];
+%q00 = [sqrt(2*(3+sqrt(3))/3)/2;sqrt((3-sqrt(3))/3)/2;-sqrt((3-sqrt(3))/3)/2;0];
+
 w00 =[0;0;0];
 Ic = [0.00919625 -0.00309375 -0.00225;
      -0.00309375 0.0082675 -0.00309375;
@@ -14,7 +16,7 @@ Ic = [0.00919625 -0.00309375 -0.00225;
 Ic_inv = inv(Ic);
 rc = [0.0954545;0.0954545;0.095454];
 
-open modelagem_2021a.slx
+open modelagem_2021a_1.slx
 
 
 
@@ -29,3 +31,11 @@ open modelagem_2021a.slx
 % legend("\omega_x","\omega_y","\omega_z")
 % ylabel("Velocidade Angular [rad/s]")
 % xlabel("Tempo [s]")
+
+% eul = out.logsout{3}.Values
+% figure(3)
+% plot(eul.Time,eul.Data,"o")
+% legend("\psi","\theta","\phi")
+% ylabel("Ângulos de Euler (ZYZ) [°]")
+% xlabel("Tempo [s]")
+
