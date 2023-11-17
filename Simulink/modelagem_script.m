@@ -5,18 +5,25 @@ b = 17.03*10^(-6);
 Tau = [0; 0; 0];
 g = [0;0;-9.81];
 mc = 0.55;
-%q00 = [sqrt(2*(3-sqrt(3))/3)/2;-sqrt((3+sqrt(3))/3)/2;sqrt((3+sqrt(3))/3)/2;0 ]; %posição de equilíbrio estável
-%q00 = [sqrt(2*(3+sqrt(3))/3)/2;sqrt((3-sqrt(3))/3)/2;-sqrt((3-sqrt(3))/3)/2;0]; %posição de equilíbrio instável
-q00 = [1;0;0;0];
+phi_s = acos(-sqrt(3)/3);
+phi_u = acos(sqrt(3)/3);
+e_s = [-sqrt(2)/2;sqrt(2)/2;0];
+e_u = [sqrt(2)/2;-sqrt(2)/2;0];
 
-w00 =[0;0;0];
-Ic = [0.00919625 -0.00309375 -0.00225;
-     -0.00309375 0.0082675 -0.00309375;
-     -0.00225 -0.00309375 0.00919625];
+q00 = [cos(phi_u/2);e_u*sin(phi_u/2)]; %posição de equilíbrio instável
+%q00 =[cos(phi_s/2);e_s*sin(phi_s/2)]; %posição de equilíbrio estável
+%q00 = [1;0;0;0];
+%w00 = [0;0;0];
+w00 =2*pi/sqrt(3)*[1;1;1];
+Ic = [0.01008 -0.00309375 -0.00309375;
+    -0.00309375 0.01008 -0.00309375;
+    -0.00309375 -0.00309375 0.01008];
+
+  
 Ic_inv = inv(Ic);
-rc = [0.0954545;0.0954545;0.095454];
+rc = [0.0954545;0.0954545;0.0954545];
 
-open modelagem_2021a_1.slx
+open modelagem_2021a_2.slx
 
 
 
