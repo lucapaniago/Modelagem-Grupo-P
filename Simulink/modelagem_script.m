@@ -11,7 +11,7 @@ e_s = [-sqrt(2)/2;sqrt(2)/2;0];
 e_u = [sqrt(2)/2;-sqrt(2)/2;0];
 
 q00 = [cos(phi_u/2);e_u*sin(phi_u/2)]; %posição de equilíbrio instável
-%q00 =[cos(phi_s/2);e_s*sin(phi_s/2)]; %posição de equilíbrio estável
+q00 =[cos(phi_s/2);e_s*sin(phi_s/2)]; %posição de equilíbrio estável
 %q00 = [1;0;0;0];
 %w00 = [0;0;0];
 w00 =2*pi/sqrt(3)*[1;1;1];
