@@ -3,7 +3,7 @@ clc
 clear
 b = 17.03*10^(-6);
 Tau = [0; 0; 0];
-g = [0;0;-9.81];
+g = [0;0;-9.81]; 
 mc = 0.55;
 phi_s = acos(-sqrt(3)/3);
 phi_u = acos(sqrt(3)/3);
