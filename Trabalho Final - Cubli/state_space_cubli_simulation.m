@@ -1,7 +1,9 @@
 
-tspan = 0:0.001:10;
-
-q_0 = [1 0 0 0 0 0 0];
+tspan = [0 3];
+phi_u = acos(sqrt(3)/3);
+e_u = [sqrt(2)/2,-sqrt(2)/2,0];
+%q_0 = [cos(phi_u/2) e_u*sin(phi_u/2) 0 0 0];
+%q_0 = [1 0 0 0 0 0 0];
 ops = odeset('MaxStep', 1e-5);
 [t1,q1] = ode45(@f, tspan, q_0, ops); 
 
@@ -16,8 +18,14 @@ plot(t1,q1(:,4))
 legend("q_0","q_1","q_2","q_3")
 xlabel("tempo (s)")
 ylabel("quaternions")
+% q = [q1(:,1) q1(:,2)  q1(:,3) q1(:,4)];
+% figure(2)
+% for i = 1:length(q1(:,1))
+%    plot(t1, norm(q(i,:)))
+%    hold on
+% end
 
-figure(2)
+figure(3)
 plot(t1,q1(:,5))
 hold on
 plot(t1,q1(:,6))
@@ -25,7 +33,7 @@ hold on
 plot(t1,q1(:,7))
 legend("w_x","w_y","w_z")
 xlabel("tempo (s)")
-ylabel("Velocidade ângular (rad/s)")
+ylabel("Velocidade angular (rad/s)")
 
 function dy = f(t,q)
     T_x = 0;

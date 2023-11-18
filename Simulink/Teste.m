@@ -14,8 +14,7 @@ C = ones(6);
 D = zeros(6,3);
 
 sys = ss(A,B,C,D);
-
-h = bodeplot(sys)
+% h = bodeplot(sys)
 
 
 
