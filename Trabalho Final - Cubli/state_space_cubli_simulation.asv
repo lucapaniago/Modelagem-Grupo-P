@@ -15,7 +15,7 @@ ops = odeset('MaxStep', 1e-5);
 [t1u,q1u] = ode45(@fnl, tspan, q_0u, ops);
 
 figure(1)
-subplot(2,2,1)
+subplot(2,1,1)
 plot(t1s,q1s(:,1))
 hold on
 plot(t1s,q1s(:,2))
@@ -28,13 +28,18 @@ xlabel("tempo (s)")
 ylabel("quaternions")
 title("Quaternions na situação de equilíbrio estável (Modelo não linear)")
 
-subplot(2,2,1)
-norm = 1-(q1s(:,1)^2+q1s(:,2)^2+q1s(:,3)^2+q1s(:,4)^2)
-plot(t1s,norm)
+NORMs = [];
+subplot(2,1,2)
+for i = 1:length(t1s(:,1))
+    norm = 1-(q1s(i,1)^2+q1s(i,2)^2+q1s(i,3)^2+q1s(i,4)^2);
+    NORMs(i) = norm;
+end
+plot(t1s,NORMs)
 xlabel("tempo (s)")
 ylabel("1-|q|")
 
 figure(2)
+subplot(2,1,1)
 plot(t1u,q1u(:,1))
 hold on
 plot(t1u,q1u(:,2))
@@ -46,6 +51,16 @@ legend("q_0","q_1","q_2","q_3")
 xlabel("tempo (s)")
 ylabel("quaternions")
 title("Quaternions na situação de equilíbrio instável (Modelo não linear)")
+
+NORMu = [];
+subplot(2,1,2)
+for i = 1:length(t1u(:,1))
+    norm = 1-(q1u(i,1)^2+q1u(i,2)^2+q1u(i,3)^2+q1u(i,4)^2);
+    NORMu(i) = norm;
+end
+plot(t1s,NORMu)
+xlabel("tempo (s)")
+ylabel("1-|q|")
 
 figure(3)
 plot(t1s,q1s(:,5))
@@ -86,6 +101,16 @@ legend("q_1","q_2","q_3")
 xlabel("tempo (s)")
 ylabel("quaternions")
 title("Quaternions na situação de equilíbrio instável (Modelo linear)")
+
+NORMlu = [];
+subplot(2,1,2)
+for i = 1:length(tlu(:,1))
+    norm = 1-(qlu(i,1)^2+qlu(i,2)^2+qlu(i,3)^2+qlu(i,4)^2);
+    NORMlu(i) = norm;
+end
+plot(t1s,NORM)
+xlabel("tempo (s)")
+ylabel("1-|q|")
 
 figure(6)
 plot(tlu,qlu(:,4))
