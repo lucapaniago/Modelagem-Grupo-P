@@ -24,16 +24,16 @@ phi_u = acos(sqrt(3)/3);%angulo de giro equilíbrio instável
 e_s = [-sqrt(2)/2;sqrt(2)/2;0]; %eixo de rotação quatérnion de equib. estável
 e_u = [sqrt(2)/2;-sqrt(2)/2;0];%eixo de rotação quatérnion de equib. instável
 
-%q00 = [cos(phi_u/2);e_u*sin(phi_u/2)]; %posição de equilíbrio instável
-q00 = [cos((phi_u - (10 * pi/180))/2);e_u*sin(((phi_u - 10*pi/180))/2)]; %posição inicial para precessão
+q00 = [cos(phi_u/2);e_u*sin(phi_u/2)]; %posição de equilíbrio instável
+%q00 = [cos((phi_u - (10 * pi/180))/2);e_u*sin(((phi_u - 10*pi/180))/2)]; %posição inicial para precessão
 %q00 =[cos(phi_s/2);e_s*sin(phi_s/2)]; %posição de equilíbrio estável
 
 %%%%
 %%Velocidades Iniciais
 %w00 =20*pi/sqrt(3)*[1;1;1];%Velocidade inicial para precessão não estacionária.%
 %w00 = 2*pi/sqrt(3)*[1;1;1]; %Velocidade inicial para rotação própria
-w00 = [38.47;38.47;39.4];%Velocidade inicial para precessão estácionário
-%w00 = [0;0;0]; %Equilibrio
+%w00 = [38.47;38.47;39.4];%Velocidade inicial para precessão estácionário
+w00 = [0;0;0]; %Equilibrio
 
 %% Sistema de Coordenadas pião
 %%Constantes
@@ -48,17 +48,17 @@ theta = 10*pi/180; %Angulo de nutação inicial
 r1 = [sin(theta);0;cos(theta)];
 e = cross(r0,r1)/norm(cross(r0,r1)); %eixo de rotação quaternion
 phi_p = acos(dot(r0,r1)/(norm(r0)*norm(r1))); %Angulo de giro quaternion
-q00_p = [cos(phi_p/2);e*sin(phi_p/2)]; %Quaternion inicial para precessão
-%q00_p = [1;0;0;0]; %Quaternion inicial para rotação própria
+%q00_p = [cos(phi_p/2);e*sin(phi_p/2)]; %Quaternion inicial para precessão
+q00_p = [1;0;0;0]; %Quaternion inicial para rotação própria
 
 %%Velocidades angulares inicias
 %w00_p = [0;0;20*pi]; %Velocidade inicial para precessão não estacionária
 %w00_p = [0;0;2*pi]; %Velocidade inicial para rotação própria
-%w00_p = [0;0;0]; %Velocidade inicial Equilibrio
+w00_p = [0;0;0]; %Velocidade inicial Equilibrio
 
 %Eixos do sistema modelado no sistema "pião"
 
-w00_p = [-4.4*sind(10);0;20*pi + 4.4*sind(10)]; %Velocidade inicial para precessão estacionário
+%w00_p = [-4.4*sind(10);0;20*pi + 4.4*sind(10)]; %Velocidade inicial para precessão estacionário
 Tau_p = [0;0;norm(Tau)]; %Torque para sistema de pião considerando torque igual nas 3 rodas de reação
 
 open modelagem_2021a_2.slx
