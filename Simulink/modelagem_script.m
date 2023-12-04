@@ -1,6 +1,6 @@
 %%Script para simulação dinâmica e cinemática do Cubli
 clc
-clear
+clear all
 %%%%%%% Sistema de Referência Modelagem
 %% Constantes
 b = 17.03*10^(-6); %Atrito Viscoso Ponto de Contato
@@ -60,6 +60,26 @@ w00_p = [0;0;0]; %Velocidade inicial Equilibrio
 
 %w00_p = [-4.4*sind(10);0;20*pi + 4.4*sind(10)]; %Velocidade inicial para precessão estacionário
 Tau_p = [0;0;norm(Tau)]; %Torque para sistema de pião considerando torque igual nas 3 rodas de reação
+
+%-----------------%
+
+A=[-10.9808	40.9808	-30.	0.444037	0.	-0.162529
+-40.9808	10.9808	30.	0.	0.444037	-0.162529
+19.0192	-19.0192	0.	0.162529	0.162529	0.444037
+110.967	-41.5293	-25.4161	-0.00231609	42.2705	-42.2726
+-41.5293	110.967	-25.4161	-42.2726	-0.00231609	42.2705
+-69.4381	-69.4381	50.8322	42.2705	-42.2726	-0.00231609];
+
+B=[0.	0.	0.;
+0.	0.	0.;
+0.	0.	0.;
+136.24	60.3319	60.3319;
+60.3319	136.24	60.3319;
+60.3319	60.3319	103.332];
+
+C = eye(6);
+D = zeros(6,3);
+
 
 open modelagem_2021a_2.slx
 
